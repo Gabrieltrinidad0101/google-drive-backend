@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGODB,{
+mongoose.connect("mongodb+srv://gabrielTrinidada:gabrielTrinidada@cluster0.joar7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",{
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
@@ -10,4 +10,3 @@ mongoose.connect(process.env.MONGODB,{
     .catch(error => console.log(error));
 
 
-    /* google-drive-frontend- */

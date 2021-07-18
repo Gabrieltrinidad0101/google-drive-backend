@@ -1,5 +1,4 @@
 //modules
-require('dotenv').config();
 const express = require("express");
 const routerUser = require("./router/router.user");
 const routerTree = require("./router/router.tree");

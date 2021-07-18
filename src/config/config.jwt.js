@@ -2,11 +2,11 @@ const jwt = require("jsonwebtoken");
 
 class createJWT{
     getToken(data){
-        return jwt.sign({data},process.env.KEY)
+        return jwt.sign({data},"djaksjdkasjdkjaskdjaksjdkasjkdjaskldjaskljdklasjkllasjkdlaldjkashdjhasjkdhjkashkd")
     }
 
     async verify(token){
-        return await jwt.verify(token,process.env.KEY);
+        return await jwt.verify(token,"djaksjdkasjdkjaskdjaksjdkasjkdjaskldjaskljdklasjkllasjkdlaldjkashdjhasjkdhjkashkd");
     }
 }
 
