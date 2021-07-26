@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname,"public")))
 
 //start the server 
 const server = async ()=>{
-    app.listen(3000);
+    await app.listen(3000);
     console.log("start the server");
 }
 

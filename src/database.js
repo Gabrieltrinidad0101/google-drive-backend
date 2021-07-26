@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-
-mongoose.connect("mongodb+srv://gabrielTrinidada:gabrielTrinidada@cluster0.joar7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",{
+"mongodb+srv://gabrielTrinidada:gabrielTrinidada@cluster0.joar7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+mongoose.connect("mongodb://localhost/google-drive",{
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
@@ -8,5 +8,3 @@ mongoose.connect("mongodb+srv://gabrielTrinidada:gabrielTrinidada@cluster0.joar7
 })
     .then(_ => console.log("DB is connect"))
     .catch(error => console.log(error));
-
-

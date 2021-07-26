@@ -36,7 +36,7 @@ user.register = async (req,res)=>{
             return res.status(500).json("the password are not same");
         if(user)
             return res.status(500).json("the email exist");
-        //create the id
+        //create the user
         const dataUser = {
             name,
             email,
@@ -100,6 +100,7 @@ user.comfircookie = async (req,res)=>{
     } catch (err) {
         res.json(false);
     }
+    
 }
 
 //user router

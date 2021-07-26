@@ -6,12 +6,12 @@ const fs = require("fs");
 
 const signOut = async (req,res)=>{
     const email = req.user.email;
+
     //database
     const files = await filesDataBase.find({email});
     await User.findOneAndDelete({email});
     await filesDataBase.deleteMany({email});
     await Tree.findOneAndDelete({email});
-
 
     //delete files with fs
     files.forEach(element => {
