@@ -28,6 +28,16 @@ Tree.saveTree = async (req,res)=>{
     }
 }
 
+Tree.comfircookie = async (req,res)=>{
+    try {
+        if(!req.user) return res.status(404).json("error");
+        res.send(true);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+
 Tree.getTree = async (req,res)=>{
     try {
         if(!req.user) return res.status(404).json("error");

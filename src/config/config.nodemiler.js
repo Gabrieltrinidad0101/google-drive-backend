@@ -9,19 +9,14 @@ class email{
 
         this.urlFrontend = frontend
 
+        if(this.urlFrontend === "https://gabrieltrinidad0101.github.io"){
+            this.urlFrontend = "https://gabrieltrinidad0101.github.io/google-drive-frontend"
+        }
+
 
         //transporter
         let transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: 'gabrielemprende1112@gmail.com',
-                pass: 'GABRIELEMPRENDE1112'
-            }
-        }); 
-
-
-        /* 
-        host: 'giow7.siteground.us',
+            host: 'giow7.siteground.us',
             port: '465',
             secure: true,
             auth: {
@@ -31,7 +26,14 @@ class email{
             ssl: {
                 rejectUnauthorized: false
             }
-        
+        }); 
+
+        /* 
+        service: "gmail",
+            auth: {
+                user: 'gabrielemprende1112@gmail.com',
+                pass: 'GABRIELEMPRENDE1112'
+            }
         */
 
         // send mail with defined transport object
@@ -81,7 +83,7 @@ class email{
                     Dominica, Jarabacoa</span><span class="s-whitespace-nowrap s-text-ellipsis mw-signature"
                     style="margin-bottom: 4px; font-size: 14px; color: rgb(105, 116, 119); line-height: 24px; height: 24px; display: block; text-align: left;"><img
                         src="https://ed.team/static/images/utils/firma/theme/url-blue.png" alt="" width="20" height="20"
-                        style="margin-top: 3px; float: left; margin-right: 7px; border-radius: 50%; display: block;"> <a href="${this.urlFrontend}/active.html?token=${this.token}">Verify</a></span>
+                        style="margin-top: 3px; float: left; margin-right: 7px; border-radius: 50%; display: block;"> <a href="${this.urlFrontend}/active.html?token=${this.token}">Verify your account</a></span>
             </td>
         </tr>
     </table>`

@@ -1,6 +1,13 @@
 //modules
 const {Router} = require("express");
-const {saveFile,getFiles,deleteFiles,deleteFile,checkPublic,publicFile,newName} = require("../controllers/file/files");
+const {saveFile,
+    getFiles,
+    deleteFiles,
+    deleteFile,
+    checkPublic,
+    publicFile,
+    newName,
+    checkIfTheIsPublic} = require("../controllers/file/files");
 const auth = require("../middlewares/auth");
 const multer = require("../middlewares/multer")
 const router = Router();
@@ -14,6 +21,7 @@ router.post("/saveFile",auth,saveFile);
 router.post("/getFiles",auth,getFiles);
 router.post("/publicFile",auth,publicFile)
 router.post("/newName",auth,newName)
+router.post("/checkIfTheIsPublic",auth,checkIfTheIsPublic)
 router.delete("/deleteFiles",auth,deleteFiles);
 router.delete("/deleteFile",auth,deleteFile);
 

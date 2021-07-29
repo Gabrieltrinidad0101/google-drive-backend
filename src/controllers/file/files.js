@@ -12,7 +12,7 @@ files.saveFile = async (req,res)=>{
         const {folder} = req.body;
         const newFile = new filesDataBase({
             name: originalname,
-            path: `${server}uploads/${filename}`,
+            path: `${server}/uploads/${filename}`,
             folder,
             email: req.user.email,
             filename,
@@ -117,6 +117,19 @@ files.newName = async (req,res)=>{
         const {filename,newName} = req.body;
         await filesDataBase.findOneAndUpdate({filename, email: req.user.email},{name: newName});
         res.status(200).json("ok");
+    } catch (error) {
+        res.status(500).json("error")
+    }
+}
+
+//checkIfTheIsPublic
+files.checkIfTheIsPublic = async (req,res)=>{
+    try {
+        if(!req.user) return res.status(404).json("error");
+        const {filename} = req.body;
+        const getInfo = await filesDataBase.findOne({filename, email: req.user.email},{public: 1});
+        console.log(filename)
+        res.status(200).json(getInfo);
     } catch (error) {
         res.status(500).json("error")
     }

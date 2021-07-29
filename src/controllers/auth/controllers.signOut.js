@@ -5,12 +5,19 @@ const path = require("path");
 const fs = require("fs");
 
 const signOut = async (req,res)=>{
+    if(!req.user) return res.status("500").json("you need the account")
     const email = req.user.email;
 
     //database
     const files = await filesDataBase.find({email});
+
+    // delete the user
     await User.findOneAndDelete({email});
+
+    //delete files in database
     await filesDataBase.deleteMany({email});
+    
+    //delete the folder
     await Tree.findOneAndDelete({email});
 
     //delete files with fs
@@ -25,7 +32,7 @@ const signOut = async (req,res)=>{
       secure: true,
       sameSite: "none",
     })
-    .send();
+    .send("ok");
 }
 
 

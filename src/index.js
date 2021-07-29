@@ -17,7 +17,6 @@ require("./database");
 
 const urlFrontend = frontend
 
-console.log(urlFrontend);
 
 //middlewares
 app.use(cors({

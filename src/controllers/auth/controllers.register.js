@@ -95,13 +95,13 @@ user.comfirEmail = async (req,res)=>{
 
 user.comfircookie = async (req,res)=>{
     try {
-        if (!req.user) return res.json(false);
+        if(!req.user) return res.status(404).json("error");
         res.send(true);
-    } catch (err) {
-        res.json(false);
+    } catch (error) {
+        res.status(500).json(error);
     }
-    
 }
+
 
 //user router
 module.exports = user;
