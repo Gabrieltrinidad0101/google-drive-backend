@@ -84,7 +84,9 @@ user.comfirEmail = async (req,res)=>{
 
         //send cookie
         res.cookie("token",token,{
-            httpOnly: true
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None'
          })
          .json("ok");
     } catch (error) {
@@ -95,7 +97,7 @@ user.comfirEmail = async (req,res)=>{
 
 user.comfircookie = async (req,res)=>{
     try {
-        if(!req.user) return res.status(404).json("error");
+        if(!req.user) return res.status(404).json(false);
         res.send(true);
     } catch (error) {
         res.status(500).json(error);

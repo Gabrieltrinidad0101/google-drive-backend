@@ -13,26 +13,25 @@ class email{
             this.urlFrontend = "https://gabrieltrinidad0101.github.io/google-drive-frontend"
         }
 
-
         //transporter
         let transporter = nodemailer.createTransport({
-            host: 'giow7.siteground.us',
-            port: '465',
-            secure: true,
+            service: "gmail",
             auth: {
-                user: 'gabrieldrive@frontend-myown-drive.xyz',
-                pass: 'gabrieldrive@frontend-myown-drive.xyz'
-            },
-            ssl: {
-                rejectUnauthorized: false
+                user: 'gabrielemprende1112@gmail.com',
+                pass: 'GABRIELEMPRENDE1112'
             }
         }); 
 
         /* 
-        service: "gmail",
+        host: 'giow7.siteground.us',
+            port: '465',
+            secure: true,
             auth: {
-                user: 'gabrielemprende1112@gmail.com',
-                pass: 'GABRIELEMPRENDE1112'
+                user: 'gabriel123gabriel@frontend-myown-drive.xyz',
+                pass: 'gabriel123gabriel'
+            },
+            ssl: {
+                rejectUnauthorized: false
             }
         */
 
