@@ -29,11 +29,7 @@ user.login = async (req,res)=>{
         const token = jwt.getToken(user);
     
         //send cookie
-        res.cookie("token",token,{
-                httpOnly: true,
-                secure: true,
-                sameSite: 'None'})
-        res.json("ok");
+        res.status(200).json({token});
 
     } catch (error) {
         //send error

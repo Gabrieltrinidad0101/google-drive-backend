@@ -39,28 +39,17 @@ files.getFiles = async (req,res)=>{
     }
 }
 
-//verification if the file is public
-/* files.verificationFiles = async(req,res)=>{
-    try {
-        const public = await filesDataBase.findOne({filename: req.params.fileName},{public: 1,_id:0});
-        if(public) return
-        if(!req.user) return res.status(404).json("error");
-    } catch (error) {
-        res.status(500).json(error)
-    }
-} */
-
 //delete files
 files.deleteFiles = async (req,res)=>{
     try {
         if(!req.user) return res.status(404).json("error");
         const {Folders} = req.body;
         Folders.forEach(async folder =>{
-            const file = await filesDataBase.findOneAndDelete({folder})
-            if(file){
-                const filename = file.filename;
-                fs.unlinkSync(path.resolve(`src/public/uploads/${filename}`));
-            } 
+            const files = await filesDataBase.find({folder})
+            await filesDataBase.deleteMany({folder})
+            files.forEach(file=>{
+                fs.unlinkSync(path.resolve(`src/public/uploads/${file.filename}`));
+            })
         })
         res.json("ok")
     } catch (error) {

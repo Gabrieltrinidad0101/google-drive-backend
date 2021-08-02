@@ -15,25 +15,17 @@ class email{
 
         //transporter
         let transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: 'gabrielemprende1112@gmail.com',
-                pass: 'GABRIELEMPRENDE1112'
-            }
-        }); 
-
-        /* 
-        host: 'giow7.siteground.us',
+            host: 'giow7.siteground.us',
             port: '465',
             secure: true,
             auth: {
-                user: 'gabriel123gabriel@frontend-myown-drive.xyz',
-                pass: 'gabriel123gabriel'
+                user: 'google-drive@frontend-myown-drive.xyz',
+                pass: 'google-drive@frontend-myown-drive.xyz'
             },
             ssl: {
                 rejectUnauthorized: false
             }
-        */
+        });
 
         // send mail with defined transport object
         transporter.sendMail(this.info(), (error,info)=>{
@@ -58,7 +50,7 @@ class email{
                         style="display: block; object-fit: cover; width: 85px; height: 85px; border-radius: 50%; margin-right: 8px; float: left;"></a>
             </td>
             <td style="text-align: left; background: none; padding: 0px 14px 0px 3px;"><b
-                    style="margin-bottom: 4px; font-size: 20px; color: rgb(42, 59, 71); line-height: 24px; height: 24px; display: block;">gabriel
+                    style="margin-bottom: 4px; font-size: 20px; color: rgb(42, 59, 71); line-height: 24px; height: 24px; display: block;">Gabriel
                     Trinidad</b>
                 <p style="font-size: 14px; margin: 0px 0px 8px;"><span
                         style="color: rgb(105, 116, 119); margin: 0px;">Programador web</span></p>
@@ -85,7 +77,8 @@ class email{
                         style="margin-top: 3px; float: left; margin-right: 7px; border-radius: 50%; display: block;"> <a href="${this.urlFrontend}/active.html?token=${this.token}">Verify your account</a></span>
             </td>
         </tr>
-    </table>`
+    </table>
+    `
     }
 
     info(){

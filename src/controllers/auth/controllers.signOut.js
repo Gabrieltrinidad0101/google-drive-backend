@@ -26,13 +26,7 @@ const signOut = async (req,res)=>{
     });
 
     //delete cookie
-    res.cookie("token", "", {
-      httpOnly: true,
-      expires: new Date(0),
-      secure: true,
-      sameSite: "none",
-    })
-    .send("ok");
+    res.status(200).send("ok");
 }
 
 

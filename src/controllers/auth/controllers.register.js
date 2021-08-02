@@ -83,12 +83,7 @@ user.comfirEmail = async (req,res)=>{
         await newUser.save();
 
         //send cookie
-        res.cookie("token",token,{
-            httpOnly: true,
-            secure: true,
-            sameSite: 'None'
-         })
-         .json("ok");
+         res.status(200).json({token});
     } catch (error) {
         //if the token is invalid
         res.status(404).json("the user is invalid")
