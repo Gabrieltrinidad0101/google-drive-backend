@@ -8,7 +8,7 @@
     "start": "node src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "gabrielqwes123@gmail.com <gabrielqwes123@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -24,6 +24,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
-  }
+    "nodemon": "^2.0.12"
+  },
+  "repository": "https://github.com/Gabrieltrinidad0101/google-drive-backend.git"
 }

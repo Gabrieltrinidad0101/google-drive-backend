@@ -29,7 +29,8 @@ user.login = async (req,res)=>{
         const token = jwt.getToken(user);
     
         //send cookie
-        res.status(200).json({token});
+        res.cookie("token",token,{httpOnly: true})
+        res.json("ok");
 
     } catch (error) {
         //send error

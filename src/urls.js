@@ -1,5 +1,5 @@
 // select how do you wanna run the app
-const url = 3
+const url = 1
 
 // get the ip4 with ipconfig in window with ipconfig
 const ip4 = "http://10.0.0.5"
@@ -10,8 +10,7 @@ let server =  null
 // var frontend
 let frontend = null
 
-
-// dev juan
+// dev
 if(url === 1) {server = `http://localhost:3000`; frontend = `http://localhost:4000`}
 
 // network

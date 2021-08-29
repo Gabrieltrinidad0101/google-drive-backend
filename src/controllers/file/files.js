@@ -1,6 +1,7 @@
-const filesDataBase = require("../../models/models.files");
+        const filesDataBase = require("../../models/models.files");
 const fs = require("fs");
 const {server} = require("../../urls")
+const { v4: uuidv4 } = require('uuid');
 const path = require("path");
 const files = {};
 
@@ -21,7 +22,62 @@ files.saveFile = async (req,res)=>{
         await newFile.save();
         res.status(200).json([newFile]);
     } catch (error) {
-        console.log(error);
+        res.status(500).json(error)
+    }
+}
+
+
+//save document
+files.saveDocument = async (req,res)=>{
+    try {
+        if(!req.user) return res.status(404).json("error");
+        const {folder,Data,filename} = req.body;
+        if (filename){
+            const pathFile = path.resolve(`src/public/uploads/${filename}`)
+            fs.writeFile(pathFile,Data,(error)=>{
+                if(error){
+                    return res.status(500).json(error)
+                }
+            });
+            return res.status(200).json("ok")
+        } 
+
+        id = uuidv4()
+        fs.writeFile(path.resolve(`src/public/uploads/${id + ".html"}`),Data, async error=>{
+            if(error)
+                res.status(501).json("error")
+                return
+        })
+        const newFile = new filesDataBase({
+            name: 'undefined.html',
+            path: `${server}/uploads/${id}`,
+            folder,
+            email: req.user.email,
+            filename: id + '.html',
+            mimetype: 'application/html',
+        });
+        await newFile.save();
+        res.status(200).json([newFile])
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(error)
+    }
+}
+
+//read document
+files.readDocument = async (req,res)=>{
+    try {
+        if(!req.user) return res.status(404).json("error");
+        const {filename} = req.body
+        const pathFile = path.resolve(`src/public/uploads/${filename}`)
+        fs.readFile(pathFile, 'utf8' , (err, Data) => {
+            if (err) {
+                res.status(500).json(err)
+                return
+            }
+            return res.status(200).json(Data)
+        })
+    } catch (error) {
         res.status(500).json(error)
     }
 }
@@ -111,13 +167,12 @@ files.newName = async (req,res)=>{
     }
 }
 
-//checkIfTheIsPublic
+//check if the is public
 files.checkIfTheIsPublic = async (req,res)=>{
     try {
         if(!req.user) return res.status(404).json("error");
         const {filename} = req.body;
         const getInfo = await filesDataBase.findOne({filename, email: req.user.email},{public: 1});
-        console.log(filename)
         res.status(200).json(getInfo);
     } catch (error) {
         res.status(500).json("error")

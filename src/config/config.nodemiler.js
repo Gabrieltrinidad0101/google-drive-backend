@@ -2,40 +2,51 @@ const {frontend} = require("../urls")
 const nodemailer = require("nodemailer");
 
 class email{
-    send = async (email,token) => new Promise((res,rej)=>{
-        //data
-        this.email = email;
-        this.token = token;
-
-        this.urlFrontend = frontend
-
-        if(this.urlFrontend === "https://gabrieltrinidad0101.github.io"){
-            this.urlFrontend = "https://gabrieltrinidad0101.github.io/google-drive-frontend"
-        }
-
-        //transporter
-        let transporter = nodemailer.createTransport({
-            host: 'giow7.siteground.us',
-            port: '465',
-            secure: true,
-            auth: {
-                user: 'google-drive@frontend-myown-drive.xyz',
-                pass: 'google-drive@frontend-myown-drive.xyz'
-            },
-            ssl: {
-                rejectUnauthorized: false
+    async send(email,token){
+        return new Promise((res,rej)=>{
+            //data
+            this.email = email;
+            this.token = token;
+    
+            this.urlFrontend = frontend
+    
+            if(this.urlFrontend === "https://gabrieltrinidad0101.github.io"){
+                this.urlFrontend = "https://gabrieltrinidad0101.github.io/google-drive-frontend"
             }
-        });
+    
+            //transporter
+            let transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'Gabrielqwes123@gmail.com',
+                    pass: 'GABRIELQWES123@'
+                },
+            });
 
-        // send mail with defined transport object
-        transporter.sendMail(this.info(), (error,info)=>{
-            if(error){
-                rej(error.message);
-            }else{
-                res(info);
-            }
+            // //transporter
+            // let transporter = nodemailer.createTransport({
+            //     host: 'giow7.siteground.us',
+            //     port: '465',
+            //     secure: true,
+            //     auth: {
+            //         user: 'Gabrielqwes123@gmail.com',
+            //         pass: 'GABRIELQWES123@'
+            //     },
+            //     ssl: {
+            //         rejectUnauthorized: false
+            //     }
+            // });
+    
+            // send mail with defined transport object
+            transporter.sendMail(this.info(), (error,info)=>{
+                if(error){
+                    rej(error.message);
+                }else{
+                    res(info);
+                }
+            });
         });
-    });
+    } 
 
 
     template(){
