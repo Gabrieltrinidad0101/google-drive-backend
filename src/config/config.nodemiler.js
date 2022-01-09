@@ -17,14 +17,11 @@ class email{
             //transporter
             let transporter = nodemailer.createTransport({
                 host: process.env.EMAILHOST,
-                port: '465',
-                secure: true,
+                secure: false,
+                port: 465,
                 auth: {
                     user: process.env.EMAIL,
                     pass: process.env.PASSWORD
-                },
-                ssl: {
-                    rejectUnauthorized: false
                 }
             });
     
