@@ -16,7 +16,7 @@ class email{
     
             //transporter
             let transporter = nodemailer.createTransport({
-                host: 'smtp.gmail.com',
+                host: process.env.EMAILHOST,
                 port: '465',
                 secure: true,
                 auth: {
