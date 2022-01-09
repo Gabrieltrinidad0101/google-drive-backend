@@ -16,12 +16,12 @@ class email{
     
             //transporter
             let transporter = nodemailer.createTransport({
-                host: process.env.EMAILHOST,
-                secure: false,
-                port: 465,
+                service: "Gmail",
                 auth: {
                     user: process.env.EMAIL,
                     pass: process.env.PASSWORD
+                },tls:{
+                    rejectUnauthorized:false
                 }
             });
     
