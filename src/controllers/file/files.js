@@ -1,4 +1,4 @@
-        const filesDataBase = require("../../models/models.files");
+const filesDataBase = require("../../models/models.files");
 const fs = require("fs");
 const {server} = require("../../urls")
 const { v4: uuidv4 } = require('uuid');
@@ -40,7 +40,7 @@ files.saveDocument = async (req,res)=>{
                 }
             });
             return res.status(200).json("ok")
-        } 
+        }
 
         id = uuidv4()
         fs.writeFile(path.resolve(`src/public/uploads/${id + ".html"}`),Data, async error=>{
@@ -57,9 +57,8 @@ files.saveDocument = async (req,res)=>{
             mimetype: 'application/html',
         });
         await newFile.save();
-        res.status(200).json([newFile])
+        res.status(200).json(newFile.filename)
     } catch (error) {
-        console.log(error)
         res.status(500).json(error)
     }
 }
@@ -72,7 +71,7 @@ files.readDocument = async (req,res)=>{
         const pathFile = path.resolve(`src/public/uploads/${filename}`)
         fs.readFile(pathFile, 'utf8' , (err, Data) => {
             if (err) {
-                res.status(500).json(err)
+                res.status(500).json("error")
                 return
             }
             return res.status(200).json(Data)
@@ -175,6 +174,23 @@ files.checkIfTheIsPublic = async (req,res)=>{
         const getInfo = await filesDataBase.findOne({filename, email: req.user.email},{public: 1});
         res.status(200).json(getInfo);
     } catch (error) {
+        res.status(500).json("error")
+    }
+}
+
+
+//search files
+files.filterFiles = async (req,res)=>{
+    try {
+        const name = req.body.name
+        const files = await filesDataBase.find({
+            $text: {
+                $search: "\"" + name + "\""
+            }
+        });
+        res.status(200).json(files);
+    } catch (error) {
+        console.log(error)
         res.status(500).json("error")
     }
 }

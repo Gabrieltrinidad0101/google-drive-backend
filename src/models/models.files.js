@@ -1,7 +1,7 @@
 const {Schema,model} = require("mongoose")
 
 
-const TreeSchema = new Schema({
+const FileSchema = new Schema({
     name: String,
     path: String,
     folder: String,
@@ -14,4 +14,7 @@ const TreeSchema = new Schema({
     }
 })
 
-module.exports = model("file",TreeSchema)
+FileSchema.index({name: "text"})
+
+
+module.exports = model("file",FileSchema)

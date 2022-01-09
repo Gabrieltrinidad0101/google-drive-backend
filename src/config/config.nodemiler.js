@@ -18,24 +18,10 @@ class email{
             let transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: 'Gabrielqwes123@gmail.com',
-                    pass: 'GABRIELQWES123@'
+                    user: process.env.EMAIL,
+                    pass: process.env.PASSWORD
                 },
             });
-
-            // //transporter
-            // let transporter = nodemailer.createTransport({
-            //     host: 'giow7.siteground.us',
-            //     port: '465',
-            //     secure: true,
-            //     auth: {
-            //         user: 'Gabrielqwes123@gmail.com',
-            //         pass: 'GABRIELQWES123@'
-            //     },
-            //     ssl: {
-            //         rejectUnauthorized: false
-            //     }
-            // });
     
             // send mail with defined transport object
             transporter.sendMail(this.info(), (error,info)=>{

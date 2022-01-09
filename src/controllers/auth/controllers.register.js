@@ -18,7 +18,7 @@ const newEmail = new Email();
 
 //register
 user.register = async (req,res)=>{
-    /* try { */
+    try {
         //get parameters
         const {name,email,password,passwordVerify} = req.body;
 
@@ -30,7 +30,7 @@ user.register = async (req,res)=>{
         //check if all is right
         if(name === null || email === null || password === null || passwordVerify === null)
             return res.status(500).json("Fill in all the parameters");
-        if(password.lenght < NUMBER)
+        if(password.length < NUMBER)
             return res.status(500).json("the password need to be more then 8 caracters");
         if(password !== passwordVerify)
             return res.status(500).json("the password are not same");
@@ -52,10 +52,10 @@ user.register = async (req,res)=>{
         //send OK
         res.status(200).json("Verify your email");
 
-    /* }catch (error) {
+    }catch (error) {
         console.log(error);
-        res.status(500).json({error})
-    } */
+        res.status(500).json("error")
+    }
 }
 
 //comfir email`s token

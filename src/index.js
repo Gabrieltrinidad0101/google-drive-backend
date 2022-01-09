@@ -8,6 +8,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 const cookie =  require("cookie-parser")
 const {frontend} =  require("./urls");
+require("dotenv").config();
+
 //app
 const app = express();
 
@@ -16,7 +18,6 @@ require("./database");
 
 
 const urlFrontend = frontend
-
 
 //middlewares
 app.use(cors({
@@ -38,7 +39,7 @@ app.use(express.static(path.join(__dirname,"public")))
 
 //start the server 
 const server = async ()=>{
-    await app.listen(3000);
+    await app.listen(5000);
     console.log("start the server");
 }
 

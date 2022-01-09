@@ -8,7 +8,7 @@ const signOut = async (req,res)=>{
     if(!req.user) return res.status("500").json("you need the account")
     const email = req.user.email;
 
-    //database
+    //find files
     const files = await filesDataBase.find({email});
 
     // delete the user
@@ -26,9 +26,12 @@ const signOut = async (req,res)=>{
     });
 
     //delete cookie
-    res.status(200).send("ok");
+    res.status(200).cookie("token","",{
+        httpOnly: true,
+        expires: new Date(0)
+    })
+    .send("ok")
 }
-
 
 module.exports = signOut;
 

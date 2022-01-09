@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-"mongodb+srv://gabrielTrinidada:gabrielTrinidada@cluster0.joar7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-mongoose.connect("mongodb://localhost/google-drive",{
+mongoose.connect(process.env.DATABASE,{
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,

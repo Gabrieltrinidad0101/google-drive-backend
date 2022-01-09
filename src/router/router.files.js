@@ -9,6 +9,7 @@ const {saveFile,
     newName,
     saveDocument,
     readDocument,
+    filterFiles,
     checkIfTheIsPublic} = require("../controllers/file/files");
 const auth = require("../middlewares/auth");
 const multer = require("../middlewares/multer")
@@ -26,6 +27,7 @@ router.post("/newName",auth,newName);
 router.post("/checkIfTheIsPublic",auth,checkIfTheIsPublic);
 router.post("/saveDocument",auth,saveDocument);
 router.post("/readDocument",auth,readDocument);
+router.post("/filterFiles",auth,filterFiles);
 router.delete("/deleteFiles",auth,deleteFiles);
 router.delete("/deleteFile",auth,deleteFile);
 
