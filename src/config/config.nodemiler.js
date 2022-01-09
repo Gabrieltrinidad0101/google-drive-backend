@@ -16,15 +16,18 @@ class email{
     
             //transporter
             let transporter = nodemailer.createTransport({
-                service: "Gmail",
+                host: process.env.EMAILHOST,
+                port: 465,
+                secure: true,
                 auth: {
-                    user: process.env.EMAIL,
+                    user: process.env.EMAIL ,
                     pass: process.env.PASSWORD
-                },tls:{
-                    rejectUnauthorized:false
+                },
+                tls: {
+                    rejectUnauthorized: false
                 }
             });
-    
+
             // send mail with defined transport object
             transporter.sendMail(this.info(), (error,info)=>{
                 if(error){
@@ -82,7 +85,7 @@ class email{
 
     info(){
         return {
-            from: "gabrieldrive@frontend-myown-drive.xyz", // sender address
+            from: process.env.EMAIL, // sender address
             to: this.email, // list of receivers
             subject: "Verify your account ✔", // Subject line
             html: this.template(), // html body
