@@ -1,8 +1,8 @@
 // select how do you wanna run the app
-const url = 1
+const url = 4
 
 // get the ip4 with ipconfig in window with ipconfig
-const ip4 = "http://10.0.0.3"
+const ip4 = "http://10.0.0.3" 
 
 // var server
 let server =  null
@@ -17,10 +17,10 @@ if(url === 1) {server = `http://localhost:5000`; frontend = `http://localhost:40
 if(url === 2) {server = `${ip4}:5000`; frontend = `${ip4}:4000`} 
 
 // production
-if(url === 3) {server = "https://my-own-drive.xyz/"; frontend = `https://gabrieltrinidad0101.github.io`}
+if(url === 3) {server = "https://myowndrive.xyz/"; frontend = `https://gabrieltrinidad0101.github.io`}
 
 //production and dev
-if(url === 4) {server = "https://my-own-drive.xyz/"; frontend = `http://localhost:4000`}
+if(url === 4) {server = "https://myowndrive.xyz/"; frontend = `http://localhost:4000`}
 
 
 //export the url
