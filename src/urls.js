@@ -1,8 +1,8 @@
 // select how do you wanna run the app
 const url = 3
 
-// get the ip4 with ipconfig in window with ipconfig
-const ip4 = "http://10.0.0.3" 
+// get the ip4 with ipconfig in linux with ip -a
+const ip4 = "http://10.0.0.9"
 
 // var server
 let server =  null

@@ -26,10 +26,7 @@ const signOut = async (req,res)=>{
     });
 
     //delete cookie
-    res.status(200).cookie("token","",{
-        httpOnly: true,
-        expires: new Date(0)
-    })
+    res.status(200).clearCookie("token")
     .send("ok")
 }
 
