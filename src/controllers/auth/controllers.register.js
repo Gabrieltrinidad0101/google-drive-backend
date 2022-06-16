@@ -14,7 +14,6 @@ const user = {};
 
 //clases
 const jwt = new Createjwt();
-const newEmail = new Email();
 
 //register
 user.register = async (req,res)=>{
@@ -46,34 +45,6 @@ user.register = async (req,res)=>{
         //create the token
         const token = await jwt.getToken(dataUser);
 
-        //send email
-        await newEmail.send(email,token);
-
-        //send OK
-        res.status(200).json("Verify your email");
-
-    }catch (error) {
-        console.log(error);
-        res.status(500).json("error")
-    }
-}
-
-//comfir email`s token
-user.comfirEmail = async (req,res)=>{
-    try {
-        //get token
-        const token = req.params.token;
-
-        //verifycation
-        const info = await jwt.verify(token);
-
-        //get data
-        const {name,email,password} = info.data;
-
-        //find user
-        const user = await User.findOne({email});
-        if(user) return res.json("Error");
-        
         //save in database
         const newUser = new User({
             name,
@@ -84,12 +55,15 @@ user.comfirEmail = async (req,res)=>{
 
         //send cookie
         res.cookie("token",token,{httpOnly: true,sameSite: 'None',secure: true})
-        res.json("ok");
-    } catch (error) {
-        //if the token is invalid
-        res.status(404).json("the user is invalid")
+
+        //send OK
+        res.status(200).json("ok");
+
+    }catch (error) {
+        console.log(error);
+        res.status(500).json("error")
     }
-};
+}
 
 user.comfircookie = async (req,res)=>{
     try {
